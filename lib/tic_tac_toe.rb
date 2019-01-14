@@ -256,7 +256,7 @@ end
 
 def play(board)
   input = gets
-  if !over?(board)
+  until over?(board)
     turn(board)
   end
 end

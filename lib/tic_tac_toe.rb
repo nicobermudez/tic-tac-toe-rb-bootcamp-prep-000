@@ -125,7 +125,7 @@ end
     
 # Define your play method below
 
-def play(board)
+def play
     while !over?
       turn
     end

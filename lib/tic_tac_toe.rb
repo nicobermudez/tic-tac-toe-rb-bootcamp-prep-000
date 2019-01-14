@@ -3,39 +3,6 @@
 # Define display_board that accepts a board and prints
 # out the current state.
 
-board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-
-def turn(board)
-  puts "Please enter 1-9:"
-  input = gets
-  index = input_to_index(input)
-  if valid_move?(board, index)
-    move(board, index)
-    display_board(board)
-  else 
-    turn(board)
-  end
-end
-
-def valid_move?(board, index)
-  if position_taken?(board, index) || !index.between?(0, 9)
-    nil
-
-  else
-    true
-  end
-end
-
-# re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
-
-def position_taken?(board, index)
-  if board[index] == " " || board[index] == "" || board[index] == nil
-    false
-  else
-    true
-  end
-end 
-
 def display_board(board)
   puts " #{board[0]} | #{board[1]} | #{board[2]} "
   puts "-----------"
@@ -54,12 +21,32 @@ def move(array, index, value = "X")
   array[index] = value
 end
 
-# Define your play method below
+# re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
 
-def play(board)
-  i = 0;
-  until i == 9
-    i+= 1
+def position_taken?(board, index)
+  if board[index] == " " || board[index] == "" || board[index] == nil
+    false
+  else
+    true
+  end
+end
+
+def valid_move?(board, index)
+  if position_taken?(board, index) || !index.between?(0, 9)
+    nil
+  else
+    true
+  end
+end
+
+def turn(board)
+  puts "Please enter 1-9:"
+  input = gets
+  index = input_to_index(input)
+  if valid_move?(board, index)
+    move(board, index)
+    display_board(board)
+  else 
     turn(board)
   end
 end
@@ -136,7 +123,13 @@ def winner(board)
   end
 end
     
-      
-    
+# Define your play method below
+
+def play(board)
+  input = gets
+  until over?(board)
+    turn(board)
+  end
+end
     
   

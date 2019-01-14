@@ -126,15 +126,13 @@ end
 # Define your play method below
 
 def play(board)
-    while !over?
-      turn
-    end
+  turn(board) until over?(board)
     if won?
       puts "Congratulations #{winner}!"
-    elsif draw?
+    elsif draw?(board)
       puts "Cats Game!"
     end
-  end
+end
 
     
   
